@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>❤️ A Surprise ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(-45deg, #ff2e63, #ff5f7e, #ff8fa3);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+@keyframes bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 420px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    position: relative;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    margin: 0 auto 20px;
+}
+
+h1 {
+    margin: 10px 0;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.95;
+}
+
+.buttons {
+    margin-top: 25px;
+    position: relative;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 8px;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#yesBtn {
+    background: #ff3366;
+    color: white;
+}
+
+#noBtn {
+    background: #333;
+    color: white;
+    position: absolute;
+}
+
+.celebrate {
+    font-size: 42px;
+    animation: pop 0.8s ease forwards;
+}
+
+@keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.line {
+    margin-top: 16px;
+    font-size: 20px;
+    animation: fadeUp 1.2s forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+    animation: fly 4s linear infinite;
+}
+
+@keyframes fly {
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(-700px) scale(1.6); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="stage" class="card">
+
+    <!-- STEP 2 -->
+    <div id="step2">
+        <div class="avatar">
+<img src="https://drive.google.com/file/d/0B_n6uGx61oqWRnp4SUFXTWQ4SXc/view?usp=drive_link&resourcekey=0-sw9TT8I5e9PuyLwZ_nu19Q"   width="120"
+    height="120"
+    style="display:block; border:1px solid red;"alt="Avatar" >
+	</div>
+
+        <h1>Hey My Love 💖</h1>
+
+        <p>
+            Every smile of yours feels like home.<br>
+            Every moment with you feels like magic.<br>
+            And today… I have one important question.
+        </p>
+
+        <p><strong>Will you be my Valentine? ❤️</strong></p>
+
+        <div class="buttons">
+            <button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+            <button id="noBtn" onmouseover="runAway()" onclick="runAway()">No ❌</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function runAway() {
+    const btn = document.getElementById("noBtn");
+    const card = document.getElementById("stage");
+
+    const maxX = card.offsetWidth - btn.offsetWidth;
+    const maxY = card.offsetHeight - btn.offsetHeight;
+
+    btn.style.left = Math.random() * maxX + "px";
+    btn.style.top = Math.random() * maxY + "px";
+}
+
+function yesClicked() {
+    const stage = document.getElementById("stage");
+
+    stage.innerHTML = `
+        <div class="celebrate">🎉 CONGRATULATIONS 🎉</div>
+
+        <div class="line" style="animation-delay:0.8s;">
+            You are officially, proudly, and forever
+        </div>
+
+        <div class="line" style="animation-delay:1.8s;">
+            💞 The Valentine of 💞
+        </div>
+
+        <div class="line" style="animation-delay:2.8s; font-size:26px;">
+            Anupama ❤️
+        </div>
+
+        <div class="line" style="animation-delay:3.8s;">
+            Today, tomorrow, and always.
+        </div>
+
+        <div class="line" style="animation-delay:4.8s;">
+            Happy Valentine’s Day 💖
+        </div>
+    `;
+
+    setInterval(createParticles, 250);
+}
+
+function createParticles() {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.innerHTML = Math.random() > 0.5 ? "❤️" : "✨";
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.bottom = "0px";
+    p.style.fontSize = (18 + Math.random() * 30) + "px";
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 4000);
+}
+</script>
+
+</body>
+</html>
